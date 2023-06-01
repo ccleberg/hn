@@ -177,7 +177,7 @@ function get_user(string $api_url, string $inline_title) {
 	$limit = count($response['submitted']) > 10 ? 10 : count($response['submitted']);
 	if (count($response['submitted']) > 0) {
 		for ($i = 0; $i < $limit; $i++) {
-			$sub_url = 'https://hacker-news.firebaseio.com/v0/item/' . $response['submitted][$i] . '.json';
+			$sub_url = 'https://hacker-news.firebaseio.com/v0/item/' . $response['submitted'][$i] . '.json';
 			$sub_response_raw = file_get_contents($sub_url);
 			$sub_response = json_decode($sub_response_raw, true);
 
