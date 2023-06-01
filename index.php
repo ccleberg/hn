@@ -97,7 +97,7 @@ function get_stories($api_url, $inline_title)
  * @param string $page_content Page content to display in <main>
  */
 function echo_html(string $page_url, string $page_description, string $page_title, string $page_content) {
-	include_once '_classes/template.php';
+	include_once 'src/View/class-template.php';
 
 	$template = new HN\View\Template(
                 $page_url,
