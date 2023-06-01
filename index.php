@@ -11,7 +11,7 @@ if (empty($elements[0])) {
         );
         echo_html(
        		$GLOBALS['full_domain'] . '/best/',
-		'The top 30 stories from Hacker News. Proxied by hn.',
+		'The top stories from Hacker News, proxied by hn.',
 		'hn',
 		$html_output
         );
@@ -23,31 +23,75 @@ if (empty($elements[0])) {
 			        'Top'
 		        );
                         echo_html(
-       	                	$GLOBALS['full_domain'] . '/best/',
-		                'The top 30 stories from Hacker News. Proxied by hn.',
+       	                	$GLOBALS['full_domain'] . '/top/',
 		                'hn',
 		                $html_output
                         );
 			break;
 
 		case 'best':
-			echo 'best';
+			$html_output = get_stories(
+                                'https://hacker-news.firebaseio.com/v0/beststories.json?limitToFirst=30&orderBy="$key"',
+			        'Best'
+		        );
+                        echo_html(
+       	                	$GLOBALS['full_domain'] . '/best/',
+		                'The best 30 stories from Hacker News, proxied by hn.',
+		                'hn',
+		                $html_output
+                        );
 			break;
 
 		case 'new':
-			echo 'new';
+			$html_output = get_stories(
+                                'https://hacker-news.firebaseio.com/v0/newstories.json?limitToFirst=30&orderBy="$key"',
+			        'New'
+		        );
+                        echo_html(
+       	                	$GLOBALS['full_domain'] . '/new/',
+		                'The newest 30 stories from Hacker News, proxied by hn.',
+		                'hn',
+		                $html_output
+                        );
 			break;
 
 		case 'ask':
-			echo 'ask';
+			$html_output = get_stories(
+                                'https://hacker-news.firebaseio.com/v0/askstories.json?limitToFirst=30&orderBy="$key"',
+			        'Ask'
+		        );
+                        echo_html(
+       	                	$GLOBALS['full_domain'] . '/ask/',
+		                'The latest 30 asks from Hacker News, proxied by hn.',
+		                'hn',
+		                $html_output
+                        );
 			break;
 
 		case 'show':
-			echo 'show';
+			$html_output = get_stories(
+                                'https://hacker-news.firebaseio.com/v0/showstories.json?limitToFirst=30&orderBy="$key"',
+			        'Show'
+		        );
+                        echo_html(
+       	                	$GLOBALS['full_domain'] . '/show/',
+		                'The latest 30 show stories from Hacker News, proxied by hn.',
+		                'hn',
+		                $html_output
+                        );
 			break;
 
 		case 'job':
-			echo 'job';
+			$html_output = get_stories(
+                                'https://hacker-news.firebaseio.com/v0/jobstories.json?limitToFirst=30&orderBy="$key"',
+			        'Job'
+		        );
+                        echo_html(
+       	                	$GLOBALS['full_domain'] . '/job/',
+		                'The latest 30 job posts from Hacker News, proxied by hn.',
+		                'hn',
+		                $html_output
+                        );
 			break;
 
 		default:
@@ -64,8 +108,7 @@ if (empty($elements[0])) {
  * @param string $inline_title The <h1> title to use in the HTML
  * @return string $html_output The formatted HTML result of stories from the API
  */
-function get_stories($api_url, $inline_title)
-{
+function get_stories($api_url, $inline_title) {
         $response_raw = file_get_contents($api_url);
 	$response = json_decode($response_raw, true);
 
