@@ -95,6 +95,19 @@ if (empty($elements[0])) {
 			);
 		break;
 
+		case 'user':
+			$html_output = get_user(
+				'https://hacker-news.firebaseio.com/v0/user/' . $elements[0]  . '.json',
+				'User Profile: ' . $elements[0]
+			);
+			echo_html(
+				$GLOBALS['full_domain'] . '/user/' . $elements[0],
+				'The Hacker News profile for ' . $elements[0] . ', proxied by hn.',
+				'hn',
+				$html_output
+			);
+		break;
+
 		default:
 			header('HTTP/1.1 404 Not Found');
 	}
@@ -111,7 +124,12 @@ if (empty($elements[0])) {
 */
 function get_stories($api_url, $inline_title) {
 	$response_raw = file_get_contents($api_url);
-	$response = json_decode($response_raw, true);
+	if (is_null($response_raw) || $response_raw == "null") {
+		$html_output .= '<p>ERROR: Stories not found. API returned `null`.</p>';
+		return $html_output;
+	} else {
+		$response = json_decode($response_raw, true);
+	}
 
 	$html_output = '<h1>' . $inline_title . '</h1>';
 
