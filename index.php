@@ -5,9 +5,9 @@ $path = ltrim($_SERVER['REQUEST_URI'], '/');
 $elements = explode('/', $path);
 
 if (empty($elements[0])) {
-        get_stories(
+        $html_output = get_stories(
                 'https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=30&orderBy="$key"',
-                 'Top'
+                'Top'
         );
         echo_html(
        		$GLOBALS['full_domain'] . '/best/',
@@ -18,7 +18,7 @@ if (empty($elements[0])) {
 } else {
 	switch (array_shift($elements)) {
 		case 'top':
-			get_stories(
+			$html_output = get_stories(
                                 'https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=30&orderBy="$key"',
 			        'Top'
 		        );
