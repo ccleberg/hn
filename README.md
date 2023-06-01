@@ -13,7 +13,7 @@ how to deploy the project on a live system.
 
 - A web server (e.g., Nginx or Apache)
 - PHP
-- Optional: [minify](https://github.com/tdewolff/minify/tree/master/cmd/minify)
+- Optional: minify
 
 ### Installing
 
@@ -66,6 +66,8 @@ FallbackResource /index.php
 
 * [PHP](https://www.php.net/) - The scripting language
 * [HTML](https://html.spec.whatwg.org/multipage/) - The markup language
+* [minify](https://github.com/tdewolff/minify/tree/master/cmd/minify) - Used to 
+minify CSS
 
 ## Contributing
 
@@ -76,10 +78,10 @@ conduct, and the process for submitting pull requests to us.
 
 A scratch pad of ideas that may be useful to implement:
 
+- [x] Add minimal CSS.
+- [~] Add functionality to view a user's profile.
 - [ ] Add functionality to view item-specific page with comments.
-- [ ] Add functionality to view a user's profile.
 - [ ] Add functionality to load more items or paginate?
-- [ ] Add minimal CSS.
 
 ## Versioning
 
