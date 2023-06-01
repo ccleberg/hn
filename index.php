@@ -10,8 +10,7 @@ if (empty($elements[0])) {
                 'Top'
         );
         echo_html(
-       		$GLOBALS['full_domain'] . '/best/',
-		'The top stories from Hacker News, proxied by hn.',
+       		$GLOBALS['full_domain'] . '/top/',
 		'hn',
 		$html_output
         );
@@ -24,6 +23,7 @@ if (empty($elements[0])) {
 		        );
                         echo_html(
        	                	$GLOBALS['full_domain'] . '/top/',
+                		'The top stories from Hacker News, proxied by hn.',
 		                'hn',
 		                $html_output
                         );
