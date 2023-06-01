@@ -142,7 +142,7 @@ function get_stories($api_url, $inline_title) {
 		$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title'] . '</a>';
 		$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
 		$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
-		$html .= 'href="/user/'. $sub_response['by'] . '">';
+		$html .= ' href="/user/'. $sub_response['by'] . '">';
 		$html .= $sub_response['by'] . '</a> | ' . $sub_response['score'];
 		$html .= ' points</p></div>';
 		$html_output .= $html;
@@ -187,7 +187,7 @@ function get_user(string $api_url, string $inline_title) {
 			$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title'] . '</a>';
 			$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
 			$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
-			$html .= 'href="/user/'. $sub_response['by'] . '">';
+			$html .= ' href="/user/'. $sub_response['by'] . '">';
 			$html .= $sub_response['by'] . '</a> | ' . $sub_response['score'];
 			$html .= ' points</p></div>';
 			$html_output .= $html;
