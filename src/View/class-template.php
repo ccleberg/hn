@@ -3,14 +3,13 @@
 namespace HN\View;
 
 /**
- * Template View
- *
- * @author cmc <hello@cleberg.net>
- */
+* Template View
+*
+* @author cmc <hello@cleberg.net>
+*/
 class Template
 {
-	public function __construct(string $canonical_url, string $page_description, string $page_title, string $content_col)
-	{
+	public function __construct(string $canonical_url, string $page_description, string $page_title, string $content_col) {
 		$this->canonical_url = $canonical_url;
 		$this->description = $page_description;
 		$this->title = $page_title;
@@ -18,8 +17,7 @@ class Template
 		$this->current_year = date("Y");
 	}
 
-	public function echo_template()
-	{
+	public function echo_template() {
 		// Get the template file
 		$template_file = 'templates/template.html';
 		$page = file_get_contents($template_file);
@@ -37,3 +35,4 @@ class Template
 }
 
 // EOF
+	
