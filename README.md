@@ -13,19 +13,27 @@ how to deploy the project on a live system.
 
 - A web server (e.g., Nginx or Apache)
 - PHP
+- Optional: [minify](https://github.com/tdewolff/minify/tree/master/cmd/minify)
 
 ### Installing
 
 Install the dependencies, using the web server of your choice:
 
 ```
-sudo apt install nginx-full php
+sudo apt install nginx-full php minify
 ```
 
 Clone the repo:
 
 ```
 git clone https://git.sr.ht/~cmc/hn/
+```
+
+If you need to minify CSS changes:
+
+```
+# executed in the top-level `hn` dir
+minify -o static/styles.min.css static/styles.css
 ```
 
 ## Deployment
