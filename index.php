@@ -6,7 +6,7 @@ $elements = explode('/', $path);
 
 if (empty($elements[0])) {
 	$html_output = get_stories(
-		'https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=30&orderBy="$key"',
+		'https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=10&orderBy="$key"',
 		'Top'
 	);
 	echo_html(
@@ -19,7 +19,7 @@ if (empty($elements[0])) {
 	switch (array_shift($elements)) {
 		case 'top':
 			$html_output = get_stories(
-				'https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=30&orderBy="$key"',
+				'https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=10&orderBy="$key"',
 				'Top'
 			);
 			echo_html(
@@ -32,7 +32,7 @@ if (empty($elements[0])) {
 
 		case 'best':
 			$html_output = get_stories(
-				'https://hacker-news.firebaseio.com/v0/beststories.json?limitToFirst=30&orderBy="$key"',
+				'https://hacker-news.firebaseio.com/v0/beststories.json?limitToFirst=10&orderBy="$key"',
 				'Best'
 			);
 			echo_html(
@@ -45,7 +45,7 @@ if (empty($elements[0])) {
 
 		case 'new':
 			$html_output = get_stories(
-				'https://hacker-news.firebaseio.com/v0/newstories.json?limitToFirst=30&orderBy="$key"',
+				'https://hacker-news.firebaseio.com/v0/newstories.json?limitToFirst=10&orderBy="$key"',
 				'New'
 			);
 			echo_html(
@@ -58,7 +58,7 @@ if (empty($elements[0])) {
 
 		case 'ask':
 			$html_output = get_stories(
-				'https://hacker-news.firebaseio.com/v0/askstories.json?limitToFirst=30&orderBy="$key"',
+				'https://hacker-news.firebaseio.com/v0/askstories.json?limitToFirst=10&orderBy="$key"',
 				'Ask'
 			);
 			echo_html(
@@ -71,7 +71,7 @@ if (empty($elements[0])) {
 
 		case 'show':
 			$html_output = get_stories(
-				'https://hacker-news.firebaseio.com/v0/showstories.json?limitToFirst=30&orderBy="$key"',
+				'https://hacker-news.firebaseio.com/v0/showstories.json?limitToFirst=10&orderBy="$key"',
 				'Show'
 			);
 			echo_html(
@@ -84,7 +84,7 @@ if (empty($elements[0])) {
 
 		case 'job':
 			$html_output = get_stories(
-				'https://hacker-news.firebaseio.com/v0/jobstories.json?limitToFirst=30&orderBy="$key"',
+				'https://hacker-news.firebaseio.com/v0/jobstories.json?limitToFirst=10&orderBy="$key"',
 				'Job'
 			);
 			echo_html(
