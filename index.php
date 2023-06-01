@@ -177,16 +177,18 @@ function get_user(string $api_url, string $inline_title) {
 	$limit = count($response['submitted']) > 10 ? 10 : count($response['submitted']);
 	if (count($response['submitted']) > 0) {
 		for ($i = 0; $i < $limit; $i++) {
-			$sub_url = 'https://hacker-news.firebaseio.com/v0/item/' . $response['submitted>
+			$sub_url = 'https://hacker-news.firebaseio.com/v0/item/' . $response['submitted][$i] . '.json';
 			$sub_response_raw = file_get_contents($sub_url);
 			$sub_response = json_decode($sub_response_raw, true);
 
 			// TODO: Create switch-case to cover a story, comment, job, poll, or pollopt
-			$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title']>
-			$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '>
-			$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by ';
-			$html .= $sub_response['by'] . ' | ' . $sub_response['score'] . ' points</p></d>
-		$html_output .= $html;
+			$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title'] . '</a>';
+			$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
+			$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
+			$html .= 'href="/user/'. $sub_response['by'] . '">';
+			$html .= $sub_response['by'] . ' | ' . $sub_response['score'];
+			$html .= 'points</p></div>';
+			$html_output .= $html;
 		}
 	} else {
 		$html_output .= '<p>User has no subsmissions.</p>';
