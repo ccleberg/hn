@@ -138,11 +138,12 @@ function get_stories($api_url, $inline_title) {
 		$sub_response_raw = file_get_contents($sub_url);
 		$sub_response = json_decode($sub_response_raw, true);
 
+		// TODO: Can this be converted to a heredoc string with variables?
 		$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title'] . '</a>';
 		$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
 		$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
 		$html .= 'href="/user/'. $sub_response['by'] . '">';
-		$html .= $sub_response['by'] . ' | ' . $sub_response['score'];
+		$html .= $sub_response['by'] . '</a> | ' . $sub_response['score'];
 		$html .= ' points</p></div>';
 		$html_output .= $html;
 	}
@@ -168,6 +169,7 @@ function get_user(string $api_url, string $inline_title) {
 		$response = json_decode($response_raw, true);
 	}
 
+	// TODO: Can this be converted to a heredoc string with variables?
 	$html_output = '<h1>' . $inline_title . '</h1>';
 	$html_output .= '<p>About: ' . $response['about']  . '</p>';
 	$html_output .= '<p>Karma: ' . $response['karma']  . '</p>';
@@ -186,7 +188,7 @@ function get_user(string $api_url, string $inline_title) {
 			$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
 			$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
 			$html .= 'href="/user/'. $sub_response['by'] . '">';
-			$html .= $sub_response['by'] . ' | ' . $sub_response['score'];
+			$html .= $sub_response['by'] . '</a> | ' . $sub_response['score'];
 			$html .= ' points</p></div>';
 			$html_output .= $html;
 		}
