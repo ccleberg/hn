@@ -38,7 +38,7 @@ if (empty($elements[0])) {
 			echo_html(
 				$GLOBALS['full_domain'] . '/best/',
 				'The best 30 stories from Hacker News, proxied by hn.',
-				'hn',
+				'hn ~ best',
 				$html_output
 			);
 		break;
@@ -51,7 +51,7 @@ if (empty($elements[0])) {
 			echo_html(
 				$GLOBALS['full_domain'] . '/new/',
 				'The newest 30 stories from Hacker News, proxied by hn.',
-				'hn',
+				'hn ~ new',
 				$html_output
 			);
 		break;
@@ -64,7 +64,7 @@ if (empty($elements[0])) {
 			echo_html(
 				$GLOBALS['full_domain'] . '/ask/',
 				'The latest 30 asks from Hacker News, proxied by hn.',
-				'hn',
+				'hn ~ ask',
 				$html_output
 			);
 		break;
@@ -77,7 +77,7 @@ if (empty($elements[0])) {
 			echo_html(
 				$GLOBALS['full_domain'] . '/show/',
 				'The latest 30 show stories from Hacker News, proxied by hn.',
-				'hn',
+				'hn ~ show',
 				$html_output
 			);
 		break;
@@ -90,7 +90,7 @@ if (empty($elements[0])) {
 			echo_html(
 				$GLOBALS['full_domain'] . '/job/',
 				'The latest 30 job posts from Hacker News, proxied by hn.',
-				'hn',
+				'hn ~ job',
 				$html_output
 			);
 		break;
