@@ -1,8 +1,8 @@
 <?php
 
-global $full_domain = 'https://hn.cleberg.net',
-	$path = ltrim($_SERVER['REQUEST_URI'], '/'),
-	$elements = explode('/', $path);
+$full_domain = 'https://hn.cleberg.net';
+$path = ltrim($_SERVER['REQUEST_URI'], '/');
+$elements = explode('/', $path);
 
 if (empty($elements[0])) {
 	$html_output = get_stories(
