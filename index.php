@@ -171,7 +171,7 @@ function get_user(string $api_url, string $inline_title) {
 	$html_output = '<h1>' . $inline_title . '</h1>';
 	$html_output .= '<p>About: ' . $response['about']  . '</p>';
 	$html_output .= '<p>Karma: ' . $response['karma']  . '</p>';
-	$html_output .= '<p>Created: <time datetime="' . date('Y-m-d h:m:s', $response['created'])  . '>
+	$html_output .= '<p>Created: <time datetime="' . date('Y-m-d h:m:s', $response['created'])  . '>' . date('Y-m-d h:m:s', $response['created']) . '</time></p>';
 	$html_output .= '<p>Recently Submitted Posts:</p>';
 
 	$limit = count($response['submitted']) > 10 ? 10 : count($response['submitted']);
