@@ -64,6 +64,15 @@ FallbackResource /index.php
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for details on our code of 
 conduct, and the process for submitting pull requests to us.
 
+### TODO
+
+A scratch pad of ideas that may be useful to implement:
+
+- [ ] Add functionality to view item-specific page with comments.
+- [ ] Add functionality to view a user's profile.
+- [ ] Add functionality to load more items or paginate?
+- [ ] Add minimal CSS.
+
 ## Versioning
 
 This project currently doesn't use versioning. See the git log instead.
@@ -75,33 +84,4 @@ This project currently doesn't use versioning. See the git log instead.
 ## License
 
 This project is licensed under the Unlicense - see the 
-[LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-------------------------------------
-
-# hn
-
-
-## TODO
-
-A scratch pad of ideas that may be useful to implement:
-
-- [ ] Add functionality to view item-specific page with comments.
-- [ ] Add functionality to view a user's profile.
-- [ ] Add functionality to load more items or paginate?
-- [ ] Add minimal CSS.
-
-## Development
-
-This just uses plain PHP and HTML, no special package managers or development 
-tools needed. Just start editing the files with your favorite editor and use a 
-server with PHP if you want to view the results or deploy your own version.
-
-## Deployment
-
+[LICENSE.md](./LICENSE.md) file for details.
