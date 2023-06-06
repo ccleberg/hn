@@ -183,13 +183,22 @@ function get_user(string $api_url, string $inline_title) {
 			$sub_response_raw = file_get_contents($sub_url);
 			$sub_response = json_decode($sub_response_raw, true);
 
-			// TODO: Create switch-case to cover a story, comment, job, poll, or pollopt
-			$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title'] . '</a>';
-			$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
-			$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
-			$html .= ' href="/user/'. $sub_response['by'] . '">';
-			$html .= $sub_response['by'] . '</a> | ' . $sub_response['score'];
-			$html .= ' points</p></div>';
+			if ($sub_response['type'] == 'story' || $sub_response['type'] == 'job') {
+				$html = '<div><a href="' . $sub_response['url'] . '">' . $sub_response['title'] . '</a>';
+				$html .= '<p><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']) . '">';
+				$html .= date('Y-m-d h:m:s', $sub_response['time'])  . '</time> by <a';
+				$html .= ' href="/user/'. $sub_response['by'] . '">';
+				$html .= $sub_response['by'] . '</a> | ' . $sub_response['score'];
+				$html .= ' points</p></div>';
+			} elseif ($sub_response['type'] == 'poll') {
+				// TODO: Handle polls
+				$html = 'TODO: Add logic to handle polls here.';
+			} else {
+				// TODO: Add link to parent with $sub_response['parent']
+				$html = '<div><timedatetime="' . date('Y-m-d h:m:s', $sub_response['time']);
+				$html .= '">' . date('Y-m-d h:m:s', $sub_response['time']);
+				$html .= '</time><br><p>' . $sub_response['text']; $html .= '</p></div>';
+			}
 			$html_output .= $html;
 		}
 	} else {
