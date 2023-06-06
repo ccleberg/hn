@@ -195,9 +195,9 @@ function get_user(string $api_url, string $inline_title) {
 				$html = 'TODO: Add logic to handle polls here.';
 			} else {
 				// TODO: Add link to parent with $sub_response['parent']
-				$html = '<div><timedatetime="' . date('Y-m-d h:m:s', $sub_response['time']);
+				$html = '<div><time datetime="' . date('Y-m-d h:m:s', $sub_response['time']);
 				$html .= '">' . date('Y-m-d h:m:s', $sub_response['time']);
-				$html .= '</time><br><p>' . $sub_response['text']; $html .= '</p></div>';
+				$html .= '</time><br><p>' . $sub_response['text'] . '</p></div>';
 			}
 			$html_output .= $html;
 		}
