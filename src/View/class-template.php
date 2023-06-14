@@ -9,7 +9,28 @@ namespace HN\View;
 */
 class Template
 {
-	public function __construct(string $canonical_url, string $page_description, string $page_title, string $content_col) {
+    /**
+     * @var string
+     */
+    private $canonical_url;
+    /**
+     * @var string
+     */
+    private $description;
+    /**
+     * @var string
+     */
+    private $title;
+    /**
+     * @var string
+     */
+    private $content;
+    /**
+     * @var false|string
+     */
+    private $current_year;
+
+    public function __construct(string $canonical_url, string $page_description, string $page_title, string $content_col) {
 		$this->canonical_url = $canonical_url;
 		$this->description = $page_description;
 		$this->title = $page_title;
