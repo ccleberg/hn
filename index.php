@@ -230,7 +230,7 @@ function echo_html(string $page_url, string $page_description, string $page_titl
         $page_content
     );
 
-    $template->echo_template();
+    $template->echo_template('templates/template.html');
 }
 
 // EOF

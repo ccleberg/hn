@@ -38,9 +38,8 @@ class Template
 		$this->current_year = date("Y");
 	}
 
-	public function echo_template() {
+	public function echo_template(string $template_file) {
 		// Get the template file
-		$template_file = 'templates/template.html';
 		$page = file_get_contents($template_file);
 
 		// Replace the template variables
