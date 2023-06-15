@@ -81,7 +81,8 @@ A scratch pad of ideas that may be useful to implement:
 
 - [x] Add minimal CSS.
 - [x] Add functionality to view a user's profile.
-- [ ] Add functionality to view item-specific page with comments (`ConstructStoryDiscussion`).
+- [x] Add functionality to view item-specific page with comments (`ConstructStoryDiscussion`).
+    - [ ] Load recursive descendant threads.
 - [ ] Add functionality to handle polls (`ConstructPoll` & `ConstructPollOpt`).
 - [ ] Add functionality to load more items or paginate.
 

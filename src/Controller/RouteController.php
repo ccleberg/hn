@@ -156,8 +156,7 @@ class RouteController
                     ParseItem(
                         GetApiResults(
                             'https://hacker-news.firebaseio.com/v0/item/' . $elements[0] . '.json'
-                        ),
-                        'Item: ' . $elements[0]
+                        )
                     )
                 );
 

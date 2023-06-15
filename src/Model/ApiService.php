@@ -54,9 +54,9 @@ function ParseUser(mixed $api_results, string $inline_title): string
     if ($api_results == "null") {
         return '<p>ERROR: User not found.</p>';
     } else {
-    	// TODO: Create function to format $about using the following guidelines
-    	//     : https://news.ycombinator.com/formatdoc
-    	//     : hint: nl2br() will solve the first formatting requirement
+        // TODO: Create function to format $about using the following guidelines
+        //     : https://news.ycombinator.com/formatdoc
+        //     : hint: nl2br() will solve the first formatting requirement
         $about = $api_results['about'];
         $karma = $api_results['karma'];
         $created = date('Y-m-d h:m:s', $api_results['created']);
@@ -96,11 +96,33 @@ function ParseUser(mixed $api_results, string $inline_title): string
  * @return string $html_output The formatted HTML result of stories from the API or the error message
  * @author cmc <hello@cleberg.net>
  */
-function ParseItem(mixed $api_results, string $inline_title): string
+function ParseItem(mixed $api_results): string
 {
-    // TODO: Need to create a page specifially for /item/ requests
-    // TODO: Use the GetItem() and Construct*() functions below, then output in it's own page - possibly with a single parent and descendat, if exist
-    return 'TODO';
+    if ($api_results == "null") {
+        return '<p>ERROR: User not found.</p>';
+    } else {
+        $html_output = '';
+
+        if (in_array($api_results['type'], array("job", "story", "poll", "pollopt"))) {
+            $html_output .= ConstructStoryDiscussion($api_results);
+        } else {
+            if (array_key_exists('parent', $api_results)) {
+                $parent_api_results = GetApiResults('https://hacker-news.firebaseio.com/v0/item/' . $api_results['parent'] . '.json');
+                $html_output .= GetItem($parent_api_results);
+                $html_output .= '<hr>';
+            }
+
+            $html_output .= GetItem($api_results);
+
+            if ($api_results['descendants'] != 0) {
+                $html_output .= '<hr>';
+                $child_api_results = GetApiResults('https://hacker-news.firebaseio.com/v0/item/' . $api_results['kids'][0] . '.json');
+                $html_output .= GetItem($child_api_results);
+            }
+        }
+
+        return $html_output;
+    }
 }
 
 
@@ -121,7 +143,7 @@ function GetItem(mixed $api_results): string
         'comment' => ConstructComment($api_results),
         'poll' => ConstructPoll($api_results),
         'pollopt' => ConstructPollOpt($api_results),
-        default => 'ERROR: Item type not found.',
+        default => '[ERROR] Item type not found: ' . $type,
     };
 }
 
@@ -142,7 +164,11 @@ function ConstructStory(mixed $api_results): string
     $time = date('Y-m-d h:m:s', $api_results['time']);
     $by = $api_results['by'];
     $score = $api_results['score'];
-    $descendants = $api_results['descendants'];
+    if (array_key_exists('descendants', $api_results)) {
+        $descendants = $api_results['descendants'];
+    } else {
+        $descendants = 'No';
+    }
 
     return <<<EOT
         <div class="story">
@@ -161,14 +187,52 @@ function ConstructStory(mixed $api_results): string
  * Creates a story discussion page with comments
  *
  * @access public
+ * @param mixed $api_results The decoded API results
  * @return string The formatted HTML result of stories from the API or the error message
  * @author cmc <hello@cleberg.net>
  */
-function ConstructStoryDiscussion(): string
+function ConstructStoryDiscussion(mixed $api_results): string
 {
-    // TODO: Create discussion page, using mostly the same details as ConstructStory - except you need to check for $api_results['text'] to see if the poster left text in addition to the link.
-    //     : Also need to show comments (at least a list of top level ones to start)
-    return 'TODO';
+    $id = $api_results['id'];
+    $url = $api_results['url'];
+    $title = $api_results['title'];
+    $time = date('Y-m-d h:m:s', $api_results['time']);
+    $by = $api_results['by'];
+    $score = $api_results['score'];
+    $descendants = $api_results['descendants'];
+    if (array_key_exists('text', $api_results)) {
+        $text = $api_results['text'];
+    } else {
+        $text = '';
+    }
+
+    $html_output = <<<EOT
+        <div class="story-discussion">
+            <h1><a href="$url" target="_blank" rel="noopener">$title</a></h1>
+            <p>
+                <time datetime="$time">$time</time>
+                by <a href="/user/$by/">$by</a>
+                | $score points
+                | <a href="/item/$id">$descendants comments</a>
+            </p>
+            <p>$text</p>
+        </div>
+    EOT;
+
+    // TODO: Add support for more than just top-level kids (i.e., recursive).
+    if ($api_results['descendants'] != 0) {
+        $html_output .= <<<EOT
+            <div class="story-discussion-comments">
+                <h2>Comments</h2>
+        EOT;
+        for ($i = 0; $i < count($api_results['kids']); $i++) {
+            $child_api_results = GetApiResults('https://hacker-news.firebaseio.com/v0/item/' . $api_results['kids'][$i] . '.json');
+            $html_output .= GetItem($child_api_results);
+        }
+        $html_output .= '</div>';
+    }
+
+    return $html_output;
 }
 
 /**
@@ -179,17 +243,18 @@ function ConstructStoryDiscussion(): string
  * @return string The formatted HTML result of stories from the API or the error message
  * @author cmc <hello@cleberg.net>
  */
-function ConstructComment($api_results): string
+function ConstructComment(mixed $api_results): string
 {
     $time = date('Y-m-d h:m:s', $api_results['time']);
     $text = $api_results['text'];
+    $by = $api_results['by'];
     $parent = $api_results['parent'];
 
     return <<<EOT
         <div class="comment">
             <p>$text</p>
             <p><i>Submitted in response to: <a href="/item/$parent/">$parent</a></i></p>
-            <time datetime="$time">$time</time>
+            <p><time datetime="$time">$time</time> by <a href="/user/$by/">$by</a></p>
         </div>
     EOT;
 }
@@ -202,7 +267,7 @@ function ConstructComment($api_results): string
  * @return string The formatted HTML result of stories from the API or the error message
  * @author cmc <hello@cleberg.net>
  */
-function ConstructPoll($api_results): string
+function ConstructPoll(mixed $api_results): string
 {
     return 'TODO';
 }
@@ -215,7 +280,7 @@ function ConstructPoll($api_results): string
  * @return string The formatted HTML result of stories from the API or the error message
  * @author cmc <hello@cleberg.net>
  */
-function ConstructPollOpt($api_results): string
+function ConstructPollOpt(mixed $api_results): string
 {
     return 'TODO';
 }
