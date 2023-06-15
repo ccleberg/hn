@@ -54,6 +54,9 @@ function ParseUser(mixed $api_results, string $inline_title): string
     if ($api_results == "null") {
         return '<p>ERROR: User not found.</p>';
     } else {
+    	// TODO: Create function to format $about using the following guidelines
+    	//     : https://news.ycombinator.com/formatdoc
+    	//     : hint: nl2br() will solve the first formatting requirement
         $about = $api_results['about'];
         $karma = $api_results['karma'];
         $created = date('Y-m-d h:m:s', $api_results['created']);
