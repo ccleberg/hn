@@ -10,6 +10,6 @@ This project really only has a few guidelines to follow:
 
 ## Reporting Bugs
 
-I don't use a report template, so just remember to give as much detail as 
-possible about the bug you're experiencing. If there's not enough detail 
+I don't use a report template, so just remember to give as much detail as
+possible about the bug you're experiencing. If there's not enough detail
 reported, emails will need to be exchanged before anyone can look into the bug.
