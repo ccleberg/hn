@@ -1,7 +1,7 @@
 # hn
 
-[hn](https://hn.cleberg.net) is a simple front-end alternative for Hacker
-News, focusing on privacy and simplicity.
+hn is a simple front-end alternative for Hacker News, focusing on privacy and
+simplicity.
 
 ## Getting Started
 
