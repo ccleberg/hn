@@ -38,7 +38,7 @@ class FeedController
      * Request template to be presented to the user
      *
      * @access public
-     * @author cmc <hello@cleberg.net>
+     * @author Christian Cleberg <hello@cmc.pub>
      */
     public function render(): void
     {

@@ -26,7 +26,7 @@ class RouteController
      *
      * @access public
      * @return void No return type; send user to FeedController->render() or a 404 error
-     * @author cmc <hello@cleberg.net>
+     * @author Christian Cleberg <hello@cmc.pub>
      */
     public function routeUser(): void
     {

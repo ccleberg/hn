@@ -5,6 +5,6 @@
  *
  * @access public
  * @return void
- * @author cmc <hello@cleberg.net>
+ * @author Christian Cleberg <hello@cmc.pub>
  */
 function CacheService() {}

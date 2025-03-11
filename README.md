@@ -26,7 +26,7 @@ sudo apt install nginx-full php php-cgi php-fpm minify
 Clone the repo:
 
 ```
-git clone https://git.sr.ht/~cmc/hn/
+git clone https://git.sr.ht/~Christian Cleberg/hn/
 ```
 
 If you need to minify CSS changes:
@@ -92,7 +92,7 @@ This project currently doesn't use versioning. See the git log instead.
 
 ## Authors
 
-* **CMC** - *Literally everything* - [cmc](https://sr.ht/~cmc/)
+* **CMC** - *Literally everything* - [Christian Cleberg](https://sr.ht/~Christian Cleberg/)
 
 ## License
 
