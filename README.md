@@ -26,7 +26,7 @@ sudo apt install nginx-full php php-cgi php-fpm minify
 Clone the repo:
 
 ```
-git clone https://git.sr.ht/~Christian Cleberg/hn/
+git clone $repo_url
 ```
 
 If you need to minify CSS changes:
